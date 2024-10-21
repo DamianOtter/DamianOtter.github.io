@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theater Shows</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Theater Shows</h1>
+        <nav>
+            <ul>
+                <li><a href="#upcoming">Upcoming Shows</a></li>
+                <li><a href="#past">Past Shows</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="upcoming">
+            <h2>Upcoming Shows</h2>
+            <ul>
+                <li>
+                    <h3>The Phantom of the Opera</h3>
+                    <p>Date: December 1-15, 2023</p>
+                    <p>Location: Main Theatre</p>
+                </li>
+                <li>
+                    <h3>Hamilton</h3>
+                    <p>Date: January 10-20, 2024</p>
+                    <p>Location: Main Theatre</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="past">
+            <h2>Past Shows</h2>
+            <ul>
+                <li>
+                    <h3>Les Misérables</h3>
+                    <p>Date: October 1-15, 2023</p>
+                    <p>Location: Main Theatre</p>
+                </li>
+                <li>
+                    <h3>Wicked</h3>
+                    <p>Date: September 5-20, 2023</p>
+                    <p>Location: Main Theatre</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: info@theatershow.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Theater Shows. All rights reserved.</p>
+    </footer>
+</body>
+</html>
