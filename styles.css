@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background: #ff6b6b;
+    background: #B4DD1E;
     color: #ffffff;
     text-align: center;
     position: relative;
@@ -41,7 +41,7 @@ nav ul li {
 }
 
 nav a {
-    color: #ff6b6b;
+    color: #B4DD1E;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
@@ -50,7 +50,7 @@ nav a {
 }
 
 nav a:hover {
-    background: #ffcc29;
+    background: #B4DD1E;
     color: #ffffff;
 }
 
@@ -64,30 +64,30 @@ main {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #ff6b6b;
+    border-left: 5px solid #B4DD1E;
 }
 
 h2 {
     color: #35424a;
-    border-bottom: 2px solid #ffcc29;
+    border-bottom: 2px solid #B4DD1E;
     padding-bottom: 10px;
 }
 
 .show {
     margin: 15px 0;
-    background: #eaf7ff;
-    border-left: 5px solid #ff6b6b;
+    background: #B4DD1E;
+    border-left: 5px solid #B4DD1E;
     padding: 10px;
     border-radius: 5px;
 }
 
 .show h3 {
-    color: #35424a;
+    color: #B4DD1E;
 }
 
 .contact-section {
     text-align: center;
-    background: #ffcc29;
+    background: #B4DD1E;
     color: #333;
     padding: 20px;
     border-radius: 10px;
@@ -99,13 +99,13 @@ h2 {
 }
 
 .contact-section a:hover {
-    color: #ff6b6b;
+    color: #B4DD1E;
 }
 
 footer {
     text-align: center;
     padding: 10px 0;
-    background: #ff6b6b;
+    background: #B4DD1E;
     color: #ffffff;
     position: relative;
     bottom: 0;
