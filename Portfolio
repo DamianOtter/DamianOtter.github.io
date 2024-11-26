@@ -30,28 +30,22 @@
     <h1>Welkom op de pagina met 15 knoppen</h1>
 
     <div>
-        <button onclick="window.location.href='https://www.google.com'">Google</button>
-        <button onclick="window.location.href='https://www.youtube.com'">YouTube</button>
-        <button onclick="window.location.href='https://www.github.com'">GitHub</button>
-        <button onclick="window.location.href='https://www.wikipedia.org'">Wikipedia</button>
-        <button onclick="window.location.href='https://www.facebook.com'">Facebook</button>
+        <button onclick="window.location.href='LINK OPDRACHT 1'">Opdracht 1</button>
+        <button onclick="window.location.href='LINK OPDRACHT 2'">Opdracht 2</button>
+        <button onclick="window.location.href='LINK OPDRACHT 3'">Opdracht 3</button>
+        <button onclick="window.location.href='LINK OPDRACHT 4'">Opdracht 4</button>
+        <button onclick="window.location.href='LINK OPDRACHT 5'">Opdracht 5</button>
     </div>
     
     <div>
-        <button onclick="window.location.href='https://www.twitter.com'">Twitter</button>
-        <button onclick="window.location.href='https://www.instagram.com'">Instagram</button>
-        <button onclick="window.location.href='https://www.linkedin.com'">LinkedIn</button>
-        <button onclick="window.location.href='https://www.reddit.com'">Reddit</button>
-        <button onclick="window.location.href='https://www.twitch.tv'">Twitch</button>
+        <button onclick="window.location.href='LINK OPDRACHT 6'">Opdracht 6</button>
+        <button onclick="window.location.href='LINK OPDRACHT 7'">Opdracht 7</button>
+        <button onclick="window.location.href='LINK OPDRACHT 8'">Opdracht 8</button>
+        <button onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'">Opdracht 9</button>
+        <button onclick="window.location.href='LINK OPDRACHT 10'">Opdracht 10</button>
     </div>
     
     <div>
-        <button onclick="window.location.href='https://www.amazon.com'">Amazon</button>
-        <button onclick="window.location.href='https://www.netflix.com'">Netflix</button>
-        <button onclick="window.location.href='https://www.stackoverflow.com'">Stack Overflow</button>
-        <button onclick="window.location.href='https://www.bbc.com'">BBC</button>
-        <button onclick="window.location.href='https://www.bing.com'">Bing</button>
-    </div>
 
 </body>
 </html>
