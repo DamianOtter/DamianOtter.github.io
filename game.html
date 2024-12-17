@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educatief Spel: Lagen van een Computer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Educatief Spel: De Lagen van een Computer</h1>
+        <div class="question">
+            <h2>Wat is de laag die de fysieke hardware van een computer beheert?</h2>
+            <div class="options">
+                <button class="option" onclick="checkAnswer('A')">A. Applicaties</button>
+                <button class="option" onclick="checkAnswer('B')">B. Besturingssysteem</button>
+                <button class="option" onclick="checkAnswer('C')">C. Fysieke laag</button>
+                <button class="option" onclick="checkAnswer('D')">D. Netwerklaag</button>
+            </div>
+        </div>
+        <div id="feedback" class="feedback"></div>
+        <button id="nextButton" class="next-button" onclick="nextQuestion()">Volgende Vraag</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
