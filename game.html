@@ -72,17 +72,24 @@
             color: #dcdcdc;
         }
 
+        /* Updated center position for the final score */
         .score {
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             font-weight: bold;
             margin-top: 40px;
-            color: #fff;
+            color: #ffd700;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none; /* Hidden by default */
         }
 
         /* Add a smooth transition effect for the quiz */
         #quiz-container {
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
         }
 
         #quiz-container.show {
@@ -161,16 +168,18 @@
                 setTimeout(() => {
                     feedback.textContent = "";
                     showQuestion(questions[currentQuestionIndex]);
-                }, 1000); // Show next question after 1 second
+                }, 2000); // Increased delay for slower transition (2 seconds)
             } else {
                 setTimeout(() => {
                     showScore();
-                }, 1000); // Show score after last question
+                }, 2000); // Show score after delay
             }
         }
 
         function showScore() {
-            document.getElementById("score").textContent = `You scored ${score} out of ${questions.length}`;
+            const scoreElement = document.getElementById("score");
+            scoreElement.style.display = "block"; // Show the score
+            scoreElement.textContent = `You scored ${score} out of ${questions.length}`;
         }
 
         // Initial show effect
