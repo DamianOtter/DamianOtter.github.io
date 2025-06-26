@@ -6,45 +6,99 @@
     <title>Cat Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', serif;
             text-align: center;
-            margin: 50px;
-            background-color: #f9f9f9;
-            color: #333;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            margin: 0;
+            padding: 0;
+            color: #fff;
         }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 50px;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
         .question {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-        .button-container {
-            margin: 10px 0;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            margin: 5px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        .result {
-            font-size: 1.2em;
+            font-size: 2rem;
+            margin-top: 20px;
+            padding: 20px;
             font-weight: bold;
-            margin-top: 30px;
-            color: #ff4081;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            margin: 10px;
+            background-color: #fff;
+            border: none;
+            border-radius: 50px;
+            color: #333;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff7e5f;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .result {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        #feedback {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-style: italic;
+            color: #dcdcdc;
+        }
+
+        .score {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 40px;
+            color: #fff;
+        }
+
+        /* Add a smooth transition effect for the quiz */
+        #quiz-container {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #quiz-container.show {
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
     <h1>Cat Quiz</h1>
-    <div id="quiz-container">
+    <div id="quiz-container" class="show">
         <div class="question" id="question"></div>
         <div class="button-container" id="answer-buttons"></div>
         <div id="feedback" class="result"></div>
     </div>
-    <div class="result" id="score"></div>
+    <div id="score" class="score"></div>
 
     <script>
         const questions = [
@@ -93,10 +147,12 @@
         function checkAnswer(answer, correctAnswer) {
             const feedback = document.getElementById("feedback");
             if (answer === correctAnswer) {
-                feedback.textContent = "Correct!";
+                feedback.textContent = "Correct! 🎉";
+                feedback.style.color = "#90ee90"; // Light green for correct answer
                 score++;
             } else {
-                feedback.textContent = "Wrong! Try again!";
+                feedback.textContent = "Wrong! 😞 Try again.";
+                feedback.style.color = "#ff6347"; // Tomato red for wrong answer
             }
 
             currentQuestionIndex++;
@@ -105,7 +161,7 @@
                 setTimeout(() => {
                     feedback.textContent = "";
                     showQuestion(questions[currentQuestionIndex]);
-                }, 1000); // Move to next question after 1 second
+                }, 1000); // Show next question after 1 second
             } else {
                 setTimeout(() => {
                     showScore();
@@ -116,6 +172,9 @@
         function showScore() {
             document.getElementById("score").textContent = `You scored ${score} out of ${questions.length}`;
         }
+
+        // Initial show effect
+        document.getElementById("quiz-container").classList.add("show");
 
         startQuiz();
     </script>
