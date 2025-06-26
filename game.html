@@ -6,123 +6,45 @@
     <title>Cat Quiz</title>
     <style>
         body {
-            font-family: 'Georgia', serif;
-            background: #f0e4d7; /* Soft pastel background */
-            margin: 0;
-            padding: 0;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .modal {
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            width: 80%;
-            max-width: 600px;
-            padding: 30px;
+            font-family: Arial, sans-serif;
             text-align: center;
-            transform: scale(0);
-            transition: transform 0.5s ease-out;
-        }
-
-        .modal.show {
-            transform: scale(1);
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: #ff7e5f;
-            font-family: 'Times New Roman', serif;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .question {
-            font-size: 1.8rem;
-            margin-top: 20px;
-            padding: 15px;
-            font-weight: bold;
+            margin: 50px;
+            background-color: #f9f9f9;
             color: #333;
         }
-
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            margin-top: 30px;
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
         }
-
+        .button-container {
+            margin: 10px 0;
+        }
         button {
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            margin: 10px;
-            background-color: #ff7e5f;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            border-radius: 5px;
         }
-
-        button:hover {
-            background-color: #feb47b;
-            transform: scale(1.05);
-        }
-
-        #feedback {
-            font-size: 1.2rem;
-            margin-top: 20px;
-            font-style: italic;
-            color: #dcdcdc;
-        }
-
-        /* Final message styling */
-        .score {
-            font-size: 2.5rem;
+        .result {
+            font-size: 1.2em;
             font-weight: bold;
-            margin-top: 40px;
-            color: #ffd700;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            display: none;
+            margin-top: 30px;
+            color: #ff4081;
         }
-
-        /* Background overlay for popup */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            display: none;
-            z-index: 999;
-        }
-
-        .overlay.show {
-            display: block;
-        }
-
     </style>
 </head>
 <body>
-
-    <div class="overlay" id="overlay"></div>
-    
-    <div class="modal" id="quiz-container">
-        <h1>Cat Quiz</h1>
+    <h1>Cat Quiz</h1>
+    <div id="quiz-container">
         <div class="question" id="question"></div>
         <div class="button-container" id="answer-buttons"></div>
         <div id="feedback" class="result"></div>
     </div>
-
-    <div id="score" class="score"></div>
+    <div class="result" id="score"></div>
 
     <script>
         const questions = [
@@ -149,7 +71,7 @@
         ];
 
         const finalQuestion = {
-            question: "Would you like to adopt a cat? (Yes/No)",
+            question: "Do you want to adopt a cat?",
             answers: ["Yes", "No"],
             correctAnswer: "Yes"
         };
@@ -157,20 +79,7 @@
         let currentQuestionIndex = 0;
         let score = 0;
 
-        // Show the popup modal and the overlay
-        function showModal() {
-            document.getElementById("quiz-container").classList.add("show");
-            document.getElementById("overlay").classList.add("show");
-        }
-
-        // Hide the modal and overlay after quiz completion
-        function hideModal() {
-            document.getElementById("quiz-container").classList.remove("show");
-            document.getElementById("overlay").classList.remove("show");
-        }
-
         function startQuiz() {
-            showModal();
             showQuestion(questions[currentQuestionIndex]);
         }
 
@@ -182,9 +91,7 @@
             questionData.answers.forEach(answer => {
                 const button = document.createElement("button");
                 button.textContent = answer;
-                button.onclick = function() {
-                    checkAnswer(answer, questionData.correctAnswer);
-                };
+                button.onclick = () => checkAnswer(answer, questionData.correctAnswer);
                 answerButtons.appendChild(button);
             });
         }
@@ -192,12 +99,10 @@
         function checkAnswer(answer, correctAnswer) {
             const feedback = document.getElementById("feedback");
             if (answer === correctAnswer) {
-                feedback.textContent = "Correct! 🎉";
-                feedback.style.color = "#90ee90"; // Light green for correct answer
+                feedback.textContent = "Correct!";
                 score++;
             } else {
-                feedback.textContent = "Wrong! 😞 Try again.";
-                feedback.style.color = "#ff6347"; // Tomato red for wrong answer
+                feedback.textContent = "Wrong! Try again!";
             }
 
             currentQuestionIndex++;
@@ -206,53 +111,46 @@
                 setTimeout(() => {
                     feedback.textContent = "";
                     showQuestion(questions[currentQuestionIndex]);
-                }, 2000); // Increased delay for slower transition
+                }, 1000); // Move to next question after 1 second
             } else {
-                if (score === 4) {
-                    setTimeout(() => {
-                        showFinalYesNoQuestion();
-                    }, 2000);
-                } else {
-                    setTimeout(() => {
-                        showFinalMessage("Good try, but no cat adoption today!");
-                    }, 2000);
-                }
+                setTimeout(() => {
+                    showFinalQuestion();
+                }, 1000); // Show final question after last quiz question
             }
         }
 
-        function showFinalYesNoQuestion() {
-            const answerButtons = document.getElementById("answer-buttons");
-            answerButtons.innerHTML = ''; // Clear previous buttons
+        function showFinalQuestion() {
             document.getElementById("question").textContent = finalQuestion.question;
+            const answerButtons = document.getElementById("answer-buttons");
+            answerButtons.innerHTML = ''; // Clear previous answers
 
             finalQuestion.answers.forEach(answer => {
                 const button = document.createElement("button");
                 button.textContent = answer;
-                button.onclick = function() {
-                    checkFinalAnswer(answer);
-                };
+                button.onclick = () => checkFinalAnswer(answer);
                 answerButtons.appendChild(button);
             });
         }
 
         function checkFinalAnswer(answer) {
+            const feedback = document.getElementById("feedback");
             if (answer === finalQuestion.correctAnswer) {
-                showFinalMessage("Hooray! You're ready to adopt a cat! 🐾");
+                feedback.textContent = "Awesome! You are ready to adopt a cat!";
+                feedback.style.color = "#4CAF50"; // Green for correct answer
             } else {
-                showFinalMessage("Well, maybe next time. Cats will be here waiting for you! 😺");
+                feedback.textContent = "Maybe next time, but the cats will still be here!";
+                feedback.style.color = "#ff6347"; // Red for wrong answer
             }
-        }
 
-        function showFinalMessage(message) {
-            const scoreElement = document.getElementById("score");
-            scoreElement.style.display = "block"; // Show the score popup
-            scoreElement.textContent = message;
             setTimeout(() => {
-                hideModal(); // Close quiz modal after 3 seconds
-            }, 3000);
+                showScore();
+            }, 2000); // Show score after 2 seconds
         }
 
-        // Initial trigger to start the quiz
+        function showScore() {
+            document.getElementById("score").textContent = `You scored ${score} out of ${questions.length + 1}`;
+        }
+
         startQuiz();
     </script>
 </body>
