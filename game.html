@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Quiz</title>
+    <title>Pup quiz</title>
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -176,7 +176,9 @@
             questionData.answers.forEach(answer => {
                 const button = document.createElement("button");
                 button.textContent = answer;
-                button.addEventListener("click", () => checkAnswer(answer, questionData.correctAnswer)); // Fixed event listener
+                button.onclick = function() {
+                    checkAnswer(answer, questionData.correctAnswer);
+                };
                 answerButtons.appendChild(button);
             });
         }
