@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pup quiz</title>
+    <title>Cat Quiz</title>
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -79,7 +79,7 @@
             color: #dcdcdc;
         }
 
-        /* Styled for final message popup */
+        /* Final message styling */
         .score {
             font-size: 2.5rem;
             font-weight: bold;
@@ -148,6 +148,12 @@
             }
         ];
 
+        const finalQuestion = {
+            question: "Would you like to adopt a cat? (Yes/No)",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        };
+
         let currentQuestionIndex = 0;
         let score = 0;
 
@@ -202,16 +208,45 @@
                     showQuestion(questions[currentQuestionIndex]);
                 }, 2000); // Increased delay for slower transition
             } else {
-                setTimeout(() => {
-                    showFinalMessage();
-                }, 2000); // Show final message after delay
+                if (score === 4) {
+                    setTimeout(() => {
+                        showFinalYesNoQuestion();
+                    }, 2000);
+                } else {
+                    setTimeout(() => {
+                        showFinalMessage("Good try, but no cat adoption today!");
+                    }, 2000);
+                }
             }
         }
 
-        function showFinalMessage() {
+        function showFinalYesNoQuestion() {
+            const answerButtons = document.getElementById("answer-buttons");
+            answerButtons.innerHTML = ''; // Clear previous buttons
+            document.getElementById("question").textContent = finalQuestion.question;
+
+            finalQuestion.answers.forEach(answer => {
+                const button = document.createElement("button");
+                button.textContent = answer;
+                button.onclick = function() {
+                    checkFinalAnswer(answer);
+                };
+                answerButtons.appendChild(button);
+            });
+        }
+
+        function checkFinalAnswer(answer) {
+            if (answer === finalQuestion.correctAnswer) {
+                showFinalMessage("Hooray! You're ready to adopt a cat! 🐾");
+            } else {
+                showFinalMessage("Well, maybe next time. Cats will be here waiting for you! 😺");
+            }
+        }
+
+        function showFinalMessage(message) {
             const scoreElement = document.getElementById("score");
             scoreElement.style.display = "block"; // Show the score popup
-            scoreElement.textContent = "You're pawsitively amazing! 🐾";
+            scoreElement.textContent = message;
             setTimeout(() => {
                 hideModal(); // Close quiz modal after 3 seconds
             }, 3000);
