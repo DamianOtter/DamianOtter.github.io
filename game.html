@@ -3,158 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Quiz</title>
+    <title>Idk wht to put here</title>
     <style>
-        /* Global styles */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow: hidden;
+            font-family: Arial, sans-serif;
             text-align: center;
+            margin: 50px;
+            background-color: #f9f9f9;
+            color: #333;
         }
-
-        h1 {
-            font-size: 3.5rem;
-            color: #fff;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 40px;
-        }
-
-        .quiz-container {
-            background-color: #fff;
-            border-radius: 15px;
-            padding: 30px;
-            width: 80%;
-            max-width: 500px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
-        /* Animation for fading in the quiz container */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
         .question {
-            font-size: 1.8rem;
+            font-size: 1.5em;
             margin-bottom: 20px;
         }
-
         .button-container {
-            margin-top: 20px;
+            margin: 10px 0;
         }
-
         button {
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            margin: 10px;
-            background-color: #ff7e5f;
-            border: none;
-            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1em;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
         }
-
-        button:hover {
-            background-color: #feb47b;
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
         .result {
-            font-size: 1.2rem;
+            font-size: 1.2em;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 30px;
             color: #ff4081;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .score {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-top: 40px;
-            color: #ff7e5f;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 999;
-        }
-
-        .overlay.show {
-            display: block;
-        }
-
-        /* Final message container */
-        .final-message {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            width: 80%;
-            max-width: 500px;
-            margin: 0 auto;
-            font-size: 1.5rem;
-            color: #4CAF50;
-            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="overlay" id="overlay"></div>
-    
-    <div class="quiz-container" id="quiz-container">
-        <h1>Cat Quiz</h1>
+    <h1>Lets see how well you know me (Im watching you.)</h1>
+    <div id="quiz-container">
         <div class="question" id="question"></div>
         <div class="button-container" id="answer-buttons"></div>
         <div id="feedback" class="result"></div>
     </div>
-
-    <div id="score" class="score"></div>
-    <div id="final-message" class="final-message"></div>
+    <div class="result" id="score"></div>
 
     <script>
         const questions = [
             {
-                question: "What is the average lifespan of a domestic cat?",
-                answers: ["5-7 years", "10-15 years", "20-25 years", "1-3 years"],
-                correctAnswer: "10-15 years"
+                question: "Which one of these is NOT one of my cats names?",
+                answers: ["Baloo", "Scarlet", "Isaac", "Odyn"],
+                correctAnswer: "Scarlet"
             },
             {
-                question: "What is the breed of a cat with no tail?",
-                answers: ["Persian", "Manx", "Bengal", "Maine Coon"],
-                correctAnswer: "Manx"
+                question: "What do I love most about you?",
+                answers: ["Body", "Face", "The way you talk to me", "BOOBIESSSS"],
+                correctAnswer: "The way you talk to me"
             },
             {
-                question: "Which of these is a common cat behavior?",
-                answers: ["Chasing tail", "Barking", "Meowing", "Hopping"],
-                correctAnswer: "Meowing"
+                question: "Which of the following words do I hate most when being said to/about me?",
+                answers: ["K", "Gn", "Ily", "Cute"],
+                correctAnswer: "Cute"
             },
             {
-                question: "What is the largest breed of domestic cat?",
-                answers: ["Siamese", "Maine Coon", "Ragdoll", "Bengal"],
-                correctAnswer: "Maine Coon"
+                question: "Who is my favourite artist/band?",
+                answers: ["Radiohead", "Laufey", "Queen", "All of the above"],
+                correctAnswer: "All of the above"
             }
         ];
 
         const finalQuestion = {
-            question: "Do you want to adopt a cat?",
+            question: "Will you be my girlfriend?",
             answers: ["Yes", "No"],
             correctAnswer: "Yes"
         };
@@ -162,19 +79,7 @@
         let currentQuestionIndex = 0;
         let score = 0;
 
-        // Show the modal and overlay
-        function showOverlay() {
-            document.getElementById("overlay").classList.add("show");
-        }
-
-        // Hide the overlay and final message
-        function hideOverlay() {
-            document.getElementById("overlay").classList.remove("show");
-            document.getElementById("final-message").style.display = "none";
-        }
-
         function startQuiz() {
-            showOverlay();
             showQuestion(questions[currentQuestionIndex]);
         }
 
@@ -196,10 +101,8 @@
             if (answer === correctAnswer) {
                 feedback.textContent = "Correct!";
                 score++;
-                feedback.style.color = "#90ee90"; // Light green for correct answer
             } else {
                 feedback.textContent = "Wrong! Try again!";
-                feedback.style.color = "#ff6347"; // Tomato red for wrong answer
             }
 
             currentQuestionIndex++;
@@ -230,16 +133,14 @@
         }
 
         function checkFinalAnswer(answer) {
-            const finalMessage = document.getElementById("final-message");
+            const feedback = document.getElementById("feedback");
             if (answer === finalQuestion.correctAnswer) {
-                finalMessage.textContent = "Awesome! You are ready to adopt a cat!";
-                finalMessage.style.color = "#4CAF50"; // Green for correct answer
+                feedback.textContent = "message me the code, Pup.";
+                feedback.style.color = "#4CAF50"; // Green for correct answer
             } else {
-                finalMessage.textContent = "Maybe next time, but the cats will still be here!";
-                finalMessage.style.color = "#ff6347"; // Red for wrong answer
+                feedback.textContent = "Im pretty sure you misclicked.. right?";
+                feedback.style.color = "#ff6347"; // Red for wrong answer
             }
-
-            finalMessage.style.display = "block";
 
             setTimeout(() => {
                 showScore();
@@ -248,7 +149,6 @@
 
         function showScore() {
             document.getElementById("score").textContent = `You scored ${score} out of ${questions.length + 1}`;
-            hideOverlay(); // Hide overlay after displaying score
         }
 
         startQuiz();
