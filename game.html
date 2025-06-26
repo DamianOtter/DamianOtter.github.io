@@ -111,11 +111,11 @@
                 setTimeout(() => {
                     feedback.textContent = "";
                     showQuestion(questions[currentQuestionIndex]);
-                }, 1000); // Move to next question after 1 second
+                }, 2000); // Move to next question after 1 second
             } else {
                 setTimeout(() => {
                     showFinalQuestion();
-                }, 1000); // Show final question after last quiz question
+                }, 2000); // Show final question after last quiz question
             }
         }
 
@@ -135,7 +135,7 @@
         function checkFinalAnswer(answer) {
             const feedback = document.getElementById("feedback");
             if (answer === finalQuestion.correctAnswer) {
-                feedback.textContent = "message me the code, "Pup".";
+                feedback.textContent = "message me the code MyBaby.";
                 feedback.style.color = "#4CAF50"; // Green for correct answer
             } else {
                 feedback.textContent = "Im pretty sure you misclicked.. right?";
