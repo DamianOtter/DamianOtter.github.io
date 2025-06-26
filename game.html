@@ -176,7 +176,7 @@
             questionData.answers.forEach(answer => {
                 const button = document.createElement("button");
                 button.textContent = answer;
-                button.onclick = () => checkAnswer(answer, questionData.correctAnswer);
+                button.addEventListener("click", () => checkAnswer(answer, questionData.correctAnswer)); // Fixed event listener
                 answerButtons.appendChild(button);
             });
         }
