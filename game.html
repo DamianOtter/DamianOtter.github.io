@@ -7,62 +7,69 @@
     <style>
         body {
             font-family: 'Georgia', serif;
-            text-align: center;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            background: #f0e4d7; /* Soft pastel background */
             margin: 0;
             padding: 0;
-            color: #fff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            text-align: center;
+            transform: scale(0);
+            transition: transform 0.5s ease-out;
+        }
+
+        .modal.show {
+            transform: scale(1);
         }
 
         h1 {
             font-size: 3rem;
-            margin-top: 50px;
+            color: #ff7e5f;
             font-family: 'Times New Roman', serif;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            color: #fff;
-            letter-spacing: 1px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
         }
 
         .question {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-top: 20px;
-            padding: 20px;
+            padding: 15px;
             font-weight: bold;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            color: #333;
         }
 
         .button-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
             margin-top: 30px;
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             margin: 10px;
-            background-color: #fff;
+            background-color: #ff7e5f;
+            color: white;
             border: none;
-            border-radius: 50px;
-            color: #333;
+            border-radius: 25px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
         }
 
         button:hover {
-            background-color: #ff7e5f;
-            color: white;
+            background-color: #feb47b;
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .result {
-            font-size: 1.5rem;
-            margin-top: 30px;
-            font-weight: bold;
-            color: #ffd700;
         }
 
         #feedback {
@@ -72,7 +79,7 @@
             color: #dcdcdc;
         }
 
-        /* Updated center position for the final score */
+        /* Styled for final message popup */
         .score {
             font-size: 2.5rem;
             font-weight: bold;
@@ -83,28 +90,38 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
-        /* Add a smooth transition effect for the quiz */
-        #quiz-container {
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+        /* Background overlay for popup */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: none;
+            z-index: 999;
         }
 
-        #quiz-container.show {
-            opacity: 1;
+        .overlay.show {
+            display: block;
         }
 
     </style>
 </head>
 <body>
-    <h1>Cat Quiz</h1>
-    <div id="quiz-container" class="show">
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="modal" id="quiz-container">
+        <h1>Cat Quiz</h1>
         <div class="question" id="question"></div>
         <div class="button-container" id="answer-buttons"></div>
         <div id="feedback" class="result"></div>
     </div>
+
     <div id="score" class="score"></div>
 
     <script>
@@ -134,7 +151,20 @@
         let currentQuestionIndex = 0;
         let score = 0;
 
+        // Show the popup modal and the overlay
+        function showModal() {
+            document.getElementById("quiz-container").classList.add("show");
+            document.getElementById("overlay").classList.add("show");
+        }
+
+        // Hide the modal and overlay after quiz completion
+        function hideModal() {
+            document.getElementById("quiz-container").classList.remove("show");
+            document.getElementById("overlay").classList.remove("show");
+        }
+
         function startQuiz() {
+            showModal();
             showQuestion(questions[currentQuestionIndex]);
         }
 
@@ -168,23 +198,24 @@
                 setTimeout(() => {
                     feedback.textContent = "";
                     showQuestion(questions[currentQuestionIndex]);
-                }, 2000); // Increased delay for slower transition (2 seconds)
+                }, 2000); // Increased delay for slower transition
             } else {
                 setTimeout(() => {
-                    showScore();
-                }, 2000); // Show score after delay
+                    showFinalMessage();
+                }, 2000); // Show final message after delay
             }
         }
 
-        function showScore() {
+        function showFinalMessage() {
             const scoreElement = document.getElementById("score");
-            scoreElement.style.display = "block"; // Show the score
-            scoreElement.textContent = `You scored ${score} out of ${questions.length}`;
+            scoreElement.style.display = "block"; // Show the score popup
+            scoreElement.textContent = "You're pawsitively amazing! 🐾";
+            setTimeout(() => {
+                hideModal(); // Close quiz modal after 3 seconds
+            }, 3000);
         }
 
-        // Initial show effect
-        document.getElementById("quiz-container").classList.add("show");
-
+        // Initial trigger to start the quiz
         startQuiz();
     </script>
 </body>
